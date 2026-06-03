@@ -1,2 +1,2 @@
 # India-education-crisis
-This page show how I disagree is falling through cracks.
+This page show how India is falling through cracks.

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Falling Through The Cracks — India's Broken Examination System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0d0a;
+    --paper: #f5f0e8;
+    --aged: #e8e0cc;
+    --red: #c0392b;
+    --red-dark: #922b21;
+    --gold: #b5860d;
+    --muted: #6b6355;
+    --rule: #c8bfa8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* NEWSPAPER TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(0,0,0,0.03) 27px, rgba(0,0,0,0.03) 28px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    border-top: 3px double var(--ink);
+    text-align: center;
+    padding: 12px 0 10px;
+    margin: 32px 0 0;
+    position: relative;
+  }
+  .masthead::before {
+    content: '★  SPECIAL INVESTIGATION  ★';
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .pub-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .category-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: inline-block;
+    border: 1px solid var(--red);
+    padding: 3px 10px;
+    margin-bottom: 24px;
+  }
+
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 68px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  h1.headline em {
+    font-style: italic;
+    color: var(--red-dark);
+  }
+
+  .deck {
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 680px;
+    border-left: 3px solid var(--red);
+    padding-left: 20px;
+    margin-bottom: 28px;
+  }
+
+  .byline-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+  .byline-row span { color: var(--ink); font-weight: 500; }
+  .byline-sep { color: var(--rule); }
+
+  /* PULL STAT */
+  .stat-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 32px 36px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 28px;
+    text-align: center;
+  }
+  .stat-item .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1;
+    display: block;
+  }
+  .stat-item .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 56px 0 20px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--ink);
+    margin: 36px 0 12px;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: #1a1612;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 28px 0;
+    margin: 40px 0;
+    text-align: center;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 14px;
+    font-style: normal;
+  }
+
+  /* INCIDENT CARDS */
+  .incident-card {
+    border-left: 4px solid var(--red);
+    background: var(--aged);
+    padding: 24px 28px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .incident-card .incident-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .incident-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .incident-card p {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: #2a2218;
+  }
+
+  /* VICTIMS BOX */
+  .victims-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 32px 36px;
+    margin: 40px 0;
+  }
+  .victims-box h3 {
+    color: var(--paper);
+    font-style: normal;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    border-bottom: 1px solid rgba(245,240,232,0.2);
+    padding-bottom: 14px;
+  }
+  .victims-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .victims-box ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    font-size: 16px;
+    color: rgba(245,240,232,0.85);
+    padding-left: 20px;
+    position: relative;
+  }
+  .victims-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+  }
+
+  /* DEMANDS BOX */
+  .demands-box {
+    border: 2px solid var(--ink);
+    padding: 32px 36px;
+    margin: 40px 0;
+    position: relative;
+  }
+  .demands-box::before {
+    content: 'THE DEMANDS';
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--paper);
+    padding: 0 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+  }
+  .demands-box ol {
+    padding-left: 24px;
+  }
+  .demands-box ol li {
+    font-size: 17px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  .demands-box ol li:last-child { border-bottom: none; }
+  .demands-box ol li strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+  }
+
+  /* CLOSING */
+  .closing {
+    border-top: 3px double var(--ink);
+    padding-top: 40px;
+    margin-top: 60px;
+  }
+
+  .closing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--red-dark);
+    margin-bottom: 24px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    margin-top: 60px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* DROPCAP */
+  .dropcap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.2em;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    padding-right: 10px;
+    padding-top: 8px;
+    color: var(--red-dark);
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  .highlight {
+    background: linear-gradient(180deg, transparent 60%, rgba(192,57,43,0.15) 60%);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .incident-card, .victims-box, .demands-box { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="pub-name">An Investigation Into India's Examination System · June 2026</div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="category-tag">Investigative Report</div>
+    <h1 class="headline">Falling Through<br>The <em>Cracks</em></h1>
+    <p class="deck">How India's examination system spent seven years betraying crores of students — through paper leaks, cancelled exams, technical failures, distant centres, and a sewer drain in Kanpur that became the symbol of everything wrong.</p>
+    <div class="byline-row">
+      <span>Based on reported events &amp; documented facts</span>
+      <span class="byline-sep">|</span>
+      India Education Crisis
+      <span class="byline-sep">|</span>
+      June 2026
+    </div>
+  </section>
+
+  <!-- STAT BANNER -->
+  <div class="stat-banner">
+    <div class="stat-grid">
+      <div class="stat-item">
+        <span class="number">90+</span>
+        <span class="label">Exam irregularity incidents alleged</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">9 Cr+</span>
+        <span class="label">Students affected across India</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">48</span>
+        <span class="label">Paper leaks in 16 states (5 yrs)</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">29</span>
+        <span class="label">NTA exams in 2024 — lowest ever</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPENING -->
+  <div class="section-label">The Crisis</div>
+  <h2>A System That Ate Its Own Students</h2>
+
+  <p class="dropcap">Imagine spending two years of your life waking before dawn, studying through power cuts, skipping weddings, skipping meals, skipping childhood — all for one exam. One date. One shot. Now imagine that on the morning of that exam, you are told — at the last minute — that you need a photocopy of your Aadhaar card to enter the hall. You rush to the nearest shop. You crowd onto a narrow pavement with dozens of others just like you. And then the concrete slab beneath your feet gives way.</p>
+
+  <p>That is not a metaphor. That is Kanpur, May 31, 2026. That is what India's examination system has become.</p>
+
+  <p>Over the past seven to eight years, under Education Minister Dharmendra Pradhan's tenure and the watch of the National Testing Agency (NTA), India's students have endured a cascade of institutional failures so vast, so repeated, and so callously handled that the word "failure" feels almost too gentle. This is a story of a system that consumed the best years of millions of young lives — and gave them chaos, corruption, and sewage in return.</p>
+
+  <div class="pull-quote">
+    <p>"The NTA has been rocked by paper leaks, cancelled exams, and mismanagement so severe that by 2024 it was conducting only 29 exams — down from 66 the year before. The lowest in its history."</p>
+    <cite>NTA's own record — Parliamentary data, December 2024</cite>
+  </div>
+
+  <!-- PAPER LEAKS -->
+  <div class="section-label">Chapter One</div>
+  <h2>The Paper Leak Years: When the Exam Was Sold Before You Wrote It</h2>
+
+  <p>The most fundamental promise of any examination system is this: every student starts equal. In India, that promise has been broken systematically, repeatedly, and with apparent impunity.</p>
+
+  <p>An investigation by The Indian Express found <strong>at least 48 instances of paper leaks across 16 states</strong> in just five years — affecting 1.51 crore applicants competing for barely 1.2 lakh posts. Congress alleged the number was closer to <strong>90 incidents</strong>, affecting over <strong>9 crore students</strong>. Even the government's own parliamentary data confirmed over 50 cases of public exam paper leaks since 2015.</p>
+
+  <div class="incident-card">
+    <span class="incident-year">May 2024 — National Scandal</span>
+    <h4>NEET-UG 2024: When 67 Students Scored a "Perfect" 720</h4>
+    <p>On May 5, 2024, approximately 2.4 million students across India sat the NEET-UG — the sole gateway to medical education. When results arrived suspiciously early, an unprecedented 67 students had scored a perfect 720. Six of them were from the exact same examination centre in Faridabad. Bihar Police investigation revealed the question paper had been leaked 24 hours before the exam — sold to those who paid Rs 30–32 lakh. The CBI filed 6 FIRs. The Supreme Court confirmed at least 155 students directly benefited from the leak. The NTA Director General was quietly removed. The students who paid nothing but years of honest work? They got uncertainty.</p>
+  </div>
+
+  <div class="incident-card">
+    <span class="incident-year">June 2024 — Darknet Leak</span>
+    <h4>UGC-NET 2024: Cancelled the Morning After</h4>
+    <p>On June 18, 2024, 9.08 lakh candidates — aspiring assistant professors and PhD scholars — sat the UGC-NET exam across 317 cities. The very next morning, the government cancelled it. The Home Ministry's cyber crime unit had confirmed the paper was already circulating on the Darknet. 9.08 lakh futures, put on hold. The CBI registered cases against "unknown accused." Those accused remain largely unknown.</p>
+  </div>
+
+  <div class="incident-card">
+    <span class="incident-year">May 2026 — History Repeating</span>
+    <h4>NEET-UG 2026: The Leak That Wouldn't Stop Leaking</h4>
+    <p>On May 3, 2026, NEET-UG was held again. Within days, evidence emerged that a question bank shared through WhatsApp at coaching centres in Sikar, Rajasthan had matched up to 120 questions in the real exam. A chemistry teacher who noticed the overlap blew the whistle. NTA insiders were arrested. On May 12, 2026 — nine days after the exam — it was officially cancelled. Education Minister Pradhan refused to answer a single question from the media. A re-examination was announced. Students were back to square one — again.</p>
+  </div>
+
+  <p>Each of these leaks was not merely a logistical failure. It was a crime against honest students. For every student who benefited from a leaked paper by paying lakhs, there were thousands of honest students who lost their seat, their year, their dream — to someone richer and more corrupt than them.</p>
+
+  <!-- TECHNICAL FAILURES -->
+  <div class="section-label">Chapter Two</div>
+  <h2>The Technology That Never Worked: CUET's Years of Chaos</h2>
+
+  <p>If paper leaks represented active betrayal, the NTA's technical failures represented passive incompetence — a system that couldn't even manage the basic act of starting an exam on time.</p>
+
+  <h3>CUET-UG 2022</h3>
+  <p>In its very first major year, CUET-UG 2022 had exams postponed at <strong>53 centres</strong> due to technical, administrative and logistical failures. Students arrived, waited for hours, and received no communication. The NTA threatened strict action against exam centres. Nothing substantive changed.</p>
+
+  <h3>CUET-UG 2025</h3>
+  <p>A pan-India technical issue struck on May 26, 2025, delaying exams at centres across the country — from Delhi to Bihar. Students were barred from entering centres due to server errors. Parents waited outside in anxiety. Again.</p>
+
+  <h3>CUET-UG 2026</h3>
+  <p>On May 30, 2026, technology partner TCS reported a glitch that delayed CUET at multiple centres. Students waited <strong>3–4 hours in extreme summer heat</strong> with no communication, no water arrangements, no updates. <strong>3,765 candidates</strong> who had already completed biometric registration gave up and left before the exam could start. NTA had to offer all of them a fresh re-examination date. "First NEET, then CBSE, now CUET," said AAP leader Atishi — and she was not wrong.</p>
+
+  <div class="pull-quote">
+    <p>"CUET 2026 students forced to wait 3–4 hours due to technical glitches. No proper communication, no arrangements, students and parents suffering in extreme heat. This is unacceptable for a national-level exam."</p>
+    <cite>Student's post on X (Twitter), May 30, 2026</cite>
+  </div>
+
+  <!-- DISTANT CENTRES -->
+  <div class="section-label">Chapter Three</div>
+  <h2>The Journey Before the Exam: Miles From Home, Hours Before Dawn</h2>
+
+  <p>Across NEET, CUET, and B.Ed examinations, one complaint has appeared with haunting regularity: exam centres allocated to students were impossibly far from their homes.</p>
+
+  <p>Students reported leaving their homes at <strong>6 AM</strong> to reach centres that were "many many miles away from the main city." Parents accompanied them on long journeys — only to arrive and find that the exam hadn't even started yet due to technical failures or administrative chaos. The exhaustion of travel before a high-stakes exam is not a small inconvenience. For students from lower-income families who can't afford stays near distant centres, it is a serious disadvantage — a structural inequality baked into the system itself.</p>
+
+  <!-- KANPUR -->
+  <div class="section-label">Chapter Four — The Image That Should Haunt Us All</div>
+  <h2>The Kanpur Drain: India's Education Crisis Made Visible</h2>
+
+  <p>On the morning of May 31, 2026, outside H.N. Mishra PG College in Kanpur, Uttar Pradesh, something happened that no student should ever experience on the day of an examination.</p>
+
+  <p>Students had arrived for the UP B.Ed Joint Entrance Examination. They were then informed — at the last minute — that they needed photocopies of their Aadhaar cards to enter the exam hall. A requirement nobody had clearly communicated in advance. Dozens of students and their family members rushed to a nearby photocopy shop in the Nagar Nigam market area.</p>
+
+  <p>They crowded onto a narrow pavement. Under their feet was an old, dilapidated concrete slab covering a sewage drain. The slab — neglected, crumbling, unmaintained — gave way.</p>
+
+  <p><strong>Around 25 students and family members fell straight into the sewage drain.</strong></p>
+
+  <p>Those who fell found themselves trapped in filth — their clothes destroyed, their study materials ruined, their exam admit cards soaked in sewage. Four students sustained injuries. Locals, shopkeepers and police pulled them out. Videos of the incident went viral within hours, sparking nationwide outrage.</p>
+
+  <p>This single image — young people who had studied for months, falling into a sewer because of a last-minute administrative demand, outside a crumbling exam centre — is the most honest portrait of what India's examination system has done to its students.</p>
+
+  <div class="pull-quote">
+    <p>"Those who fell into the drain found themselves trapped in sewage, with their clothes, personal belongings, study materials, and crucial exam admit cards instantly soaked and ruined."</p>
+    <cite>Reported by multiple national outlets, June 1, 2026</cite>
+  </div>
+
+  <!-- HUMAN COST -->
+  <div class="section-label">Chapter Five</div>
+  <h2>The Human Cost: These Were Not Statistics</h2>
+
+  <div class="victims-box">
+    <h3>Who This System Failed</h3>
+    <ul>
+      <li>Students who prepared for years, only to have their exam papers sold to wealthy candidates for Rs 30–32 lakh</li>
+      <li>9.08 lakh UGC-NET aspirants whose futures were put on hold because a paper was circulating on the Darknet the night before</li>
+      <li>The 155+ NEET students confirmed by the Supreme Court to have been directly disadvantaged by the 2024 leak</li>
+      <li>Thousands of CUET candidates who waited 3–4 hours in summer heat, only to give up and go home</li>
+      <li>3,765 CUET 2026 candidates who left after technical failures and now must appear for a re-exam</li>
+      <li>Students allocated exam centres hours from home, arriving exhausted before writing the most important exam of their lives</li>
+      <li>25 B.Ed aspirants in Kanpur who fell into a sewage drain because of a last-minute Aadhaar photocopy requirement</li>
+      <li>Every honest student who lost a medical seat, a teaching post, or a research fellowship — to someone who simply paid more</li>
+    </ul>
+  </div>
+
+  <!-- ACCOUNTABILITY -->
+  <div class="section-label">Chapter Six</div>
+  <h2>The Response: Committees, Transfers, and Silence</h2>
+
+  <p>After each crisis, the government's response followed a predictable script. A committee was announced. An official was quietly transferred or removed. A press conference was held. The minister expressed concern. And then — until the next crisis — life went on.</p>
+
+  <p>After the 2024 NEET scandal, NTA Director General Subodh Kumar Singh was put on "compulsory wait." A high-level committee was formed to review NTA. After the 2026 NEET cancellation, the CBI was asked to investigate. After CUET-UG 2026 chaos, NTA promised "full compensatory time." After the Kanpur drain collapse, local administration promised to investigate the structural integrity of the market's pathways.</p>
+
+  <p>After seven to eight years of compounding failures — <strong>two officers were transferred in CBSE.</strong></p>
+
+  <p>Meanwhile, a 19-year-old hacker exposed flaws in CBSE's own marking system. The education minister refused to take questions from the media after cancelling NEET-UG 2026. And student organisations stood outside the Ministry of Education in Delhi demanding accountability — and were detained by police.</p>
+
+  <div class="pull-quote">
+    <p>"The paper leak cases of NEET-UG and UGC-NET showed the institutional failure of the National Testing Agency."</p>
+    <cite>— Dharmendra Pradhan, Union Education Minister, June 2024</cite>
+  </div>
+
+  <p>He said it himself. Institutional failure. And yet the institution remained. And the minister remained. And the failures continued.</p>
+
+  <!-- DEMANDS -->
+  <div class="section-label">Chapter Seven</div>
+  <h2>What Students Are Demanding — And Why They Are Right</h2>
+
+  <p>The student protests, the opposition demands, the calls for resignation — these are not political theatre. They are the natural, justified response of crores of young people who have watched their opportunities stolen, their time wasted, and their safety ignored.</p>
+
+  <div class="demands-box">
+    <ol>
+      <li><strong>Resignation of Dharmendra Pradhan</strong> — Seven years of systemic failure on one minister's watch demands ministerial accountability. This is not personal. It is constitutional.</li>
+      <li><strong>Restructuring or Disbanding of NTA</strong> — An agency that has collapsed in credibility this completely cannot reform itself from within. Independent, transparent restructuring under Supreme Court oversight is the minimum.</li>
+      <li><strong>Supreme Court-Monitored CBI Investigation</strong> — Into NEET 2024, NEET 2026, UGC-NET Darknet leak, and the organised syndicates selling papers across states. 48+ documented leaks in 16 states are not coincidences.</li>
+      <li><strong>Safe, Fair Exam Infrastructure</strong> — Centres within reasonable distance. Adequate facilities. No last-minute requirements. No crumbling pavements outside exam halls.</li>
+      <li><strong>Return to a Transparent Testing System</strong> — One that students can trust. One that does not require them to pay lakhs to compete with those who bought the answers.</li>
+    </ol>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p class="closing-headline">"They Fell Into a Sewer.<br>They Were Just Going To Write An Exam."</p>
+
+    <p>India produces some of the world's most brilliant minds. Its students endure competition so intense it would break most people in the world. They study through heat, through poverty, through family pressure, through the knowledge that one exam stands between them and everything they have worked for.</p>
+
+    <p>They deserve a system worthy of that sacrifice.</p>
+
+    <p>What they got instead was paper leaks sold on WhatsApp and the Darknet. Exams cancelled the day after. Technical failures year after year. Exam centres hours away. Last-minute demands for documents. A crumbling slab. A sewage drain. Soaked admit cards. And a government that responded with committees and transfers and silence.</p>
+
+    <p>The students who are protesting in the streets, who are demanding resignations, who are asking for a Supreme Court inquiry — they are not troublemakers. They are the most courageous thing in this story: <strong>young people who still believe the system can be made to work.</strong></p>
+
+    <p>The question is whether anyone in power believes that too.</p>
+
+    <hr class="rule">
+    <p style="font-style:italic; color: var(--muted); font-size:16px;">This blog is a compilation of documented, reported events from verified national news sources. Every fact cited reflects published investigations, government statements, Supreme Court proceedings, and eyewitness accounts. The students deserve their story to be told — and remembered.</p>
+  </div>
+
+  <footer>
+    <p>Falling Through The Cracks — India's Broken Examination System · Compiled June 2026</p>
+    <p style="margin-top:8px;">Based on: The Wire · The Indian Express · Careers360 · PTI · ANI · Republic World · The Logical Indian · Scroll · Business Standard</p>
+  </footer>
+
+</div>
+</body>
+</html>
